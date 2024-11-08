@@ -11,7 +11,8 @@ int main(void)
     int N = 100000;
     double *g_x; cudaMalloc((void **)&g_x, sizeof(double) * N);
     curandGenerateUniformDouble(generator, g_x, N);
-    double *x = (double*) calloc(N, sizeof(double));
+    
+    double* x = (double*)calloc(N, sizeof(double));
     cudaMemcpy(x, g_x, sizeof(double) * N, cudaMemcpyDeviceToHost);
     cudaFree(g_x);
     output_results(N, x);
